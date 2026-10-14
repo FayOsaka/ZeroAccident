@@ -68,7 +68,8 @@ const NearMissForm = () => {
         dataToSend.append("image", imageFile);
       }
 
-      const response = await fetch("http://localhost:5000/api/nearmiss", {
+      // const response = await fetch("http://localhost:5000/api/nearmiss");
+      const response = await fetch(`${API_URL}/api/nearmiss`, {
         method: "POST",
         body: dataToSend,
       });

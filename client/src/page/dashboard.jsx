@@ -20,7 +20,8 @@ const DashboardPage = () => {
 
   const fetchRecords = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/nearmiss");
+      // const response = await fetch("http://localhost:5000/api/nearmiss");
+      const response = await fetch(`${API_URL}/api/nearmiss`);
       if (response.ok) {
         const data = await response.json();
         setRecords(data);
@@ -40,7 +41,8 @@ const DashboardPage = () => {
     if (!window.confirm(`ยืนยันการเปลี่ยนสถานะเป็น "${newStatus}" ใช่หรือไม่?`)) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/nearmiss/${id}/status`, {
+      // const response = await fetch(`http://localhost:5000/api/nearmiss/${id}/status`
+      const response = await fetch(`${API_URL}/api/nearmiss/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -272,7 +274,8 @@ const DashboardPage = () => {
                           <td className="px-6 py-4 whitespace-nowrap text-center text-sm">
                             {record.image ? (
                               <button 
-                                onClick={() => setSelectedImage(`http://localhost:5000/uploads/${record.image}`)}
+                                // onClick={() => setSelectedImage(`http://localhost:5000/uploads/${record.image}`)}
+                                onClick={() => setSelectedImage(`${API_URL}/uploads/${record.image}`)}
                                 className="inline-flex items-center justify-center px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-bold transition-colors border border-blue-200"
                               >
                                 <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
